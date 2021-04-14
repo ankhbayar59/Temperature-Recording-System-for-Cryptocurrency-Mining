@@ -30,4 +30,4 @@ Ankhbayar Baljinnyam Only
 
 
 ## Link to github
-
+https://github.com/ankhbayar59/Temperature-Recording-System-for-Cryptocurrency-Mining
