@@ -1,6 +1,8 @@
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient 
 import Adafruit_DHT
 import time
+import json
+
 
 ENDPOINT = "a1nfu30dqjq7nl-ats.iot.us-east-2.amazonaws.com"
 CLIENT_ID = "sensor client"
@@ -19,8 +21,6 @@ sensor_MQTT_Client.configureMQTTOperationTimeout(5)
 temperatureSensorName = Adafruit_DHT.DHT11
 
 
-
-
 sensor_MQTT_Client.connect()
  
    
@@ -29,12 +29,21 @@ while 1:
     
     f_temperature = temperature * (1.8) + 32
     
-    payload = str(f_temperature)
+    device_id = "199659"
 
-    print payload 
+    payload0="{"
+    payload1 = "\"device_id\": \""
+    payload2 = "\"temperature\": \""
+    payload3 = "\", \"humidity\":"
+    payload4 ="\"}"
+    payload = "{} {} {} {} {} {} {} {}".format(payload0, payload1, device_id, payload2, str(f_temperature), payload3, str(humidity), payload4)
+    payload = json.dumps(payload) 
+    payload_json = json.loads(payload)       
     
     #publishing the sensor's temperature data to AWS IOT thing named "sensorValue"
     
-    sensor_MQTT_Client.publish("sensorValue", payload, 0) #publish the payload
+    sensor_MQTT_Client.publish("sensorValue", payload_json, 0) #publish the payload
+
+    print(payload_json)
     
     time.sleep(2)
