@@ -33,10 +33,10 @@ while 1:
 
     payload0="{"
     payload1 = "\"device_id\": \""
-    payload2 = "\"temperature\": \""
-    payload3 = "\", \"humidity\":"
+    payload2 = "\", \"temperature\":"
+    payload3 = ", \"humidity\": \""
     payload4 ="\"}"
-    payload = "{} {} {} {} {} {} {} {}".format(payload0, payload1, device_id, payload2, str(f_temperature), payload3, str(humidity), payload4)
+    payload = "{} {} {} {} {} {} {} {}".format(payload0, payload1, device_id, payload2, f_temperature, payload3, humidity, payload4)
     payload = json.dumps(payload) 
     payload_json = json.loads(payload)       
     
