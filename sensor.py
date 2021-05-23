@@ -29,21 +29,10 @@ while 1:
     
     f_temperature = temperature * (1.8) + 32
     
-    device_id = "199659"
-
-    payload0="{"
-    payload1 = "\"device_id\": \""
-    payload2 = "\", \"temperature\":"
-    payload3 = ", \"humidity\": \""
-    payload4 ="\"}"
-    payload = "{} {} {} {} {} {} {} {}".format(payload0, payload1, device_id, payload2, f_temperature, payload3, humidity, payload4)
-    payload = json.dumps(payload) 
-    payload_json = json.loads(payload)       
     
     #publishing the sensor's temperature data to AWS IOT thing named "sensorValue"
     
-    sensor_MQTT_Client.publish("sensorValue", payload_json, 0) #publish the payload
-
-    print(payload_json)
+    sensor_MQTT_Client.publish("sensorValue", f_temperature, 0) #publish the payload
     
     time.sleep(2)
+
